@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx5e0asc5ee2g"]
+
+[ext_resource type="PackedScene" uid="uid://6dkdex7eahub" path="res://scenes/player.tscn" id="1_m4ejk"]
+[ext_resource type="PackedScene" uid="uid://d0uixonwwl0io" path="res://scenes/lamp.tscn" id="2_f0ava"]
+[ext_resource type="Texture2D" uid="uid://ba1xcbbkrvsus" path="res://godot.png" id="4_sa0ru"]
+[ext_resource type="PackedScene" uid="uid://ibkpgutb56ww" path="res://scenes/chair.tscn" id="4_xqp1e"]
+
+[node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_m4ejk")]
+position = Vector2(25, 47)
+motion_mode = 1
+
+[node name="Lamp" parent="." instance=ExtResource("2_f0ava")]
+position = Vector2(101, 55)
+
+[node name="Chair" parent="." instance=ExtResource("4_xqp1e")]
+position = Vector2(83, 54)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 317.0
+offset_bottom = 184.0
+texture = ExtResource("4_sa0ru")
+stretch_mode = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0348116, 0.0734581, 0.11431, 1)

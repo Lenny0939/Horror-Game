@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://6dkdex7eahub"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3f4qd"]
+[ext_resource type="Texture2D" uid="uid://cy1y2vwnv346" path="res://sprites/placeholder_dude.png" id="2_sgbka"]
+[ext_resource type="Texture2D" uid="uid://bf2xq4imn5dws" path="res://sprites/torch.png" id="3_bypo8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfw7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sgbka")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5pk0"]
+size = Vector2(19.5, 10.5)
+
+[sub_resource type="Gradient" id="Gradient_pbw4n"]
+offsets = PackedFloat32Array(0.0173611, 0.545139)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_svwv5"]
+gradient = SubResource("Gradient_pbw4n")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3f4qd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_gfw7e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 11.25)
+shape = SubResource("RectangleShape2D_q5pk0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 60.0
+
+[node name="torch" type="PointLight2D" parent="."]
+enabled = false
+energy = 0.8
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.592157)
+texture = ExtResource("3_bypo8")
+height = 205.0
+
+[node name="player lighting" type="PointLight2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.507812, 0.5625)
+energy = 0.3
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_svwv5")
