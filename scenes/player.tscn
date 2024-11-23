@@ -18,12 +18,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5pk0"]
 size = Vector2(19.5, 10.5)
 
-[sub_resource type="Gradient" id="Gradient_pbw4n"]
-offsets = PackedFloat32Array(0.0173611, 0.545139)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_v2wnt"]
+offsets = PackedFloat32Array(0, 0.00347222, 0.239583, 0.746528)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.504673, 0.504673, 0.504673, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_svwv5"]
-gradient = SubResource("Gradient_pbw4n")
+gradient = SubResource("Gradient_v2wnt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -52,8 +52,11 @@ texture = ExtResource("3_bypo8")
 height = 205.0
 
 [node name="player lighting" type="PointLight2D" parent="."]
-position = Vector2(0, -4)
-scale = Vector2(0.507812, 0.5625)
-energy = 0.3
+position = Vector2(0, -9)
+scale = Vector2(1.5, 1.5)
+energy = 0.11
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_svwv5")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
