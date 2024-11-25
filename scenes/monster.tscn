@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqqf33gmhrram"]
+
+[ext_resource type="AudioStream" uid="uid://c58pkxbhek06b" path="res://assets/laugh.wav" id="2_7irk7"]
+[ext_resource type="Texture2D" uid="uid://b6kl1ifa20c88" path="res://assets/placeholder_monster.png" id="2_y2tew"]
+
+[sub_resource type="Gradient" id="Gradient_pbw4n"]
+offsets = PackedFloat32Array(0, 0.00347222, 0.239583, 0.746528)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.504673, 0.504673, 0.504673, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6qcol"]
+gradient = SubResource("Gradient_pbw4n")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ss3ep"]
+radius = 18.0278
+
+[node name="Monster" type="Area2D"]
+
+[node name="enemy lighting" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(1.5, 1.5)
+color = Color(0.709854, 0, 0.10358, 1)
+energy = 0.69
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_6qcol")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_7irk7")
+autoplay = true
+attenuation = 15.455
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_y2tew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ss3ep")

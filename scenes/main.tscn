@@ -1,20 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx5e0asc5ee2g"]
+[gd_scene load_steps=6 format=3 uid="uid://dx5e0asc5ee2g"]
 
 [ext_resource type="PackedScene" uid="uid://6dkdex7eahub" path="res://scenes/player.tscn" id="1_m4ejk"]
 [ext_resource type="PackedScene" uid="uid://d0uixonwwl0io" path="res://scenes/lamp.tscn" id="2_f0ava"]
 [ext_resource type="Texture2D" uid="uid://ba1xcbbkrvsus" path="res://godot.png" id="4_sa0ru"]
 [ext_resource type="PackedScene" uid="uid://ibkpgutb56ww" path="res://scenes/chair.tscn" id="4_xqp1e"]
-[ext_resource type="Texture2D" uid="uid://b6kl1ifa20c88" path="res://sprites/placeholder_monster.png" id="5_vfknt"]
-[ext_resource type="AudioStream" uid="uid://c58pkxbhek06b" path="res://sprites/laugh.wav" id="6_n42be"]
-
-[sub_resource type="Gradient" id="Gradient_pbw4n"]
-offsets = PackedFloat32Array(0, 0.00347222, 0.239583, 0.746528)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.504673, 0.504673, 0.504673, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6qcol"]
-gradient = SubResource("Gradient_pbw4n")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="PackedScene" uid="uid://cqqf33gmhrram" path="res://scenes/monster.tscn" id="5_t3w52"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -29,30 +19,28 @@ position = Vector2(101, 55)
 [node name="Chair" parent="." instance=ExtResource("4_xqp1e")]
 position = Vector2(83, 54)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Monster" parent="." instance=ExtResource("5_t3w52")]
+position = Vector2(217, 57)
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
 offset_right = 317.0
 offset_bottom = 184.0
 texture = ExtResource("4_sa0ru")
 stretch_mode = 1
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-position = Vector2(-26, 23)
+[node name="Darkness" type="CanvasModulate" parent="."]
 color = Color(0, 0.00392157, 0.0196078, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(200, 76)
-texture = ExtResource("5_vfknt")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite2D"]
-stream = ExtResource("6_n42be")
-autoplay = true
-attenuation = 15.455
+[node name="Battery Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Full"
 
-[node name="enemy lighting" type="PointLight2D" parent="Sprite2D"]
-position = Vector2(0, -9)
-scale = Vector2(1.5, 1.5)
-color = Color(0.709854, 0, 0.10358, 1)
-energy = 0.69
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_6qcol")
+[node name="Batteries Label" type="Label" parent="CanvasLayer"]
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 23.0
+text = "Full"

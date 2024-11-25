@@ -24,7 +24,7 @@ void fragment() {
 	COLOR = texture(screen_texture, SCREEN_UV);
 	float angle = angle_from_light(FRAGCOORD.xy);
 	float player_angle = degrees(acos(dot(normalize(player_vector), FRAGCOORD.xy)));
-	
+
 	if (angle < player_angle - 15.0 || angle > player_angle + 15.0)
 		COLOR = COLOR * modulate_color;
 }

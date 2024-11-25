@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://6dkdex7eahub"]
+[gd_scene load_steps=9 format=3 uid="uid://6dkdex7eahub"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3f4qd"]
-[ext_resource type="Texture2D" uid="uid://cy1y2vwnv346" path="res://sprites/placeholder_dude.png" id="2_sgbka"]
-[ext_resource type="Texture2D" uid="uid://bf2xq4imn5dws" path="res://sprites/torch.png" id="3_bypo8"]
+[ext_resource type="Texture2D" uid="uid://cy1y2vwnv346" path="res://assets/placeholder_dude.png" id="2_sgbka"]
+[ext_resource type="Texture2D" uid="uid://brk57ii6gycx8" path="res://assets/placeholder_beam.png" id="3_6durw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gfw7e"]
 animations = [{
@@ -27,6 +27,9 @@ gradient = SubResource("Gradient_v2wnt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ndvvj"]
+radius = 24.0832
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3f4qd")
 
@@ -41,15 +44,16 @@ shape = SubResource("RectangleShape2D_q5pk0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-position_smoothing_speed = 60.0
+position_smoothing_speed = 20.0
 
 [node name="torch" type="PointLight2D" parent="."]
+position = Vector2(0, 3.5)
 enabled = false
-energy = 0.8
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.592157)
-texture = ExtResource("3_bypo8")
-height = 205.0
+shadow_filter = 2
+shadow_filter_smooth = 21.5
+texture = ExtResource("3_6durw")
 
 [node name="player lighting" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
@@ -60,3 +64,8 @@ texture = SubResource("GradientTexture2D_svwv5")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ndvvj")

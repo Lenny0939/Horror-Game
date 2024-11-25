@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6kl1ifa20c88"
-path="res://.godot/imported/placeholder_monster.png-3b6ef7c6c4a917250f54f63ef2ccbbfe.ctex"
+uid="uid://t27u1sfrmxon"
+path="res://.godot/imported/placeholder_object.png-bf11bb0b79b485cb7fe04c6b2894e0ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/placeholder_monster.png"
-dest_files=["res://.godot/imported/placeholder_monster.png-3b6ef7c6c4a917250f54f63ef2ccbbfe.ctex"]
+source_file="res://assets/placeholder_object.png"
+dest_files=["res://.godot/imported/placeholder_object.png-bf11bb0b79b485cb7fe04c6b2894e0ae.ctex"]
 
 [params]
 
