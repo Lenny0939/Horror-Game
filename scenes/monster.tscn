@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqqf33gmhrram"]
+[gd_scene load_steps=7 format=3 uid="uid://868gjrfmi4t7"]
 
+[ext_resource type="Script" path="res://scripts/monster.gd" id="1_qt1u8"]
 [ext_resource type="AudioStream" uid="uid://c58pkxbhek06b" path="res://assets/laugh.wav" id="2_7irk7"]
 [ext_resource type="Texture2D" uid="uid://b6kl1ifa20c88" path="res://assets/placeholder_monster.png" id="2_y2tew"]
 
@@ -16,6 +17,7 @@ fill_from = Vector2(0.5, 0.5)
 radius = 18.0278
 
 [node name="Monster" type="Area2D"]
+script = ExtResource("1_qt1u8")
 
 [node name="enemy lighting" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
