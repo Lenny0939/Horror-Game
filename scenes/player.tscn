@@ -27,10 +27,11 @@ gradient = SubResource("Gradient_v2wnt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ndvvj"]
-radius = 24.0832
+[sub_resource type="CircleShape2D" id="CircleShape2D_fx2aw"]
+radius = 15.8114
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_3f4qd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -68,4 +69,4 @@ current = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_ndvvj")
+shape = SubResource("CircleShape2D_fx2aw")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cqqf33gmhrram"]
 
-[ext_resource type="AudioStream" uid="uid://c58pkxbhek06b" path="res://assets/laugh.wav" id="2_7irk7"]
+[ext_resource type="AudioStream" uid="uid://de0t6jetenfxl" path="res://assets/icanhearyou.wav" id="1_hxd6y"]
 [ext_resource type="Texture2D" uid="uid://b6kl1ifa20c88" path="res://assets/placeholder_monster.png" id="2_y2tew"]
 
 [sub_resource type="Gradient" id="Gradient_pbw4n"]
@@ -26,9 +26,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_6qcol")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_7irk7")
-autoplay = true
-attenuation = 15.455
+stream = ExtResource("1_hxd6y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

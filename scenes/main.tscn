@@ -1,26 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx5e0asc5ee2g"]
+[gd_scene load_steps=8 format=3 uid="uid://dx5e0asc5ee2g"]
 
 [ext_resource type="PackedScene" uid="uid://6dkdex7eahub" path="res://scenes/player.tscn" id="1_m4ejk"]
 [ext_resource type="PackedScene" uid="uid://d0uixonwwl0io" path="res://scenes/lamp.tscn" id="2_f0ava"]
+[ext_resource type="PackedScene" uid="uid://crcix1me2rtyx" path="res://scenes/mega_torch.tscn" id="3_saleb"]
 [ext_resource type="Texture2D" uid="uid://ba1xcbbkrvsus" path="res://godot.png" id="4_sa0ru"]
 [ext_resource type="PackedScene" uid="uid://ibkpgutb56ww" path="res://scenes/chair.tscn" id="4_xqp1e"]
 [ext_resource type="PackedScene" uid="uid://cqqf33gmhrram" path="res://scenes/monster.tscn" id="5_t3w52"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_npkk1"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_m4ejk")]
+unique_name_in_owner = true
 position = Vector2(25, 47)
 motion_mode = 1
+
+[node name="Monster" parent="." instance=ExtResource("5_t3w52")]
+position = Vector2(217, 57)
+
+[node name="MegaTorch" parent="." instance=ExtResource("3_saleb")]
+unique_name_in_owner = true
+position = Vector2(287, 41)
 
 [node name="Lamp" parent="." instance=ExtResource("2_f0ava")]
 position = Vector2(101, 55)
 
 [node name="Chair" parent="." instance=ExtResource("4_xqp1e")]
 position = Vector2(83, 54)
-
-[node name="Monster" parent="." instance=ExtResource("5_t3w52")]
-position = Vector2(217, 57)
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -44,3 +52,15 @@ offset_left = 35.0
 offset_right = 75.0
 offset_bottom = 23.0
 text = "Full"
+
+[node name="Audio Label" type="Label" parent="CanvasLayer"]
+offset_left = 76.0
+offset_top = 3.0
+offset_right = 121.0
+offset_bottom = 26.0
+text = "Audio"
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamMicrophone_npkk1")
+autoplay = true
+bus = &"Record"
