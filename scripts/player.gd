@@ -2,11 +2,12 @@ extends CharacterBody2D
 
 const max_battery = 600
 var speed = 200  # speed in pixels/sec
-var batteries = 5
+var batteries = 20
 var battery = 600
 var direction_facing: Vector2
 @onready var torch = get_node("torch")
 @onready var mega_torch = %MegaTorch
+@onready var area = $Area2D
 
 func _physics_process(delta):
 	$"../CanvasLayer/Battery Label".text = str(battery)
@@ -19,7 +20,6 @@ func _physics_process(delta):
 	velocity = direction * speed * delta * 60
 	if not direction.is_zero_approx():
 		direction_facing = direction
-	print(direction_facing)
 	
 	if(Input.is_action_just_pressed("use_battery") && batteries > 0):
 		batteries -= 1
@@ -36,6 +36,6 @@ func _physics_process(delta):
 	
 	get_node("torch").rotation_degrees = rad_to_deg(direction_facing.angle())
 	move_and_slide()
-
+	
 func collect_battery():
 	batteries += 1

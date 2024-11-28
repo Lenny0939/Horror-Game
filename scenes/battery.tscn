@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://caqavylc7lsjh"]
 
-[ext_resource type="Script" path="res://scenes/battery.gd" id="1_1b000"]
+[ext_resource type="Script" path="res://scripts/battery.gd" id="1_1b000"]
 [ext_resource type="Texture2D" uid="uid://mye0muocl0t5" path="res://assets/placeholder_battery.png" id="1_27gif"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37lpo"]

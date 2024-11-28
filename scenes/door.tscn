@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqg1gosyv7qjt"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_8238k"]
+[ext_resource type="Texture2D" uid="uid://qf0ylf75jkha" path="res://assets/placeholder_door.png" id="1_y6bke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phqoa"]
+size = Vector2(13, 31)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_et2fb"]
+radius = 45.0444
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_8238k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_y6bke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_phqoa")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_et2fb")

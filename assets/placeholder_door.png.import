@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brk57ii6gycx8"
-path="res://.godot/imported/placeholder_beam.png-1dfeada20cef4d4d0317c70dd3e99312.ctex"
+uid="uid://qf0ylf75jkha"
+path="res://.godot/imported/placeholder_door.png-68399152952e65786374dff4000a1a93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder_beam.png"
-dest_files=["res://.godot/imported/placeholder_beam.png-1dfeada20cef4d4d0317c70dd3e99312.ctex"]
+source_file="res://assets/placeholder_door.png"
+dest_files=["res://.godot/imported/placeholder_door.png-68399152952e65786374dff4000a1a93.ctex"]
 
 [params]
 

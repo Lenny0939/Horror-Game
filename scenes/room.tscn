@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg74mqhkfvuxt"]
+
+[ext_resource type="Texture2D" uid="uid://c756eg05wlimb" path="res://assets/placeholder_mainroom.png" id="1_pky7n"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_aw4cq"]
+cull_mode = 2
+polygon = PackedVector2Array(-1, 0, 321, 1, 321, 180, 0, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62drv"]
+size = Vector2(320, 180)
+
+[node name="Room" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+texture = ExtResource("1_pky7n")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-160, -90)
+occluder = SubResource("OccluderPolygon2D_aw4cq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_62drv")
+
+[node name="Top left" type="CollisionPolygon2D" parent="."]
+position = Vector2(-160, -90)
+build_mode = 1
+polygon = PackedVector2Array(-2, 0, 150, 0, 151, 9, 7, 9, 7, 83, -2, 83)
+
+[node name="Top Right" type="CollisionPolygon2D" parent="."]
+position = Vector2(150, -90)
+rotation = 1.5708
+build_mode = 1
+polygon = PackedVector2Array(1, -11, 89, -11, 89, -3, 8, -3, 9, 125, -1.49061e-06, 125)
+
+[node name="Bottom Left" type="CollisionPolygon2D" parent="."]
+position = Vector2(-148, 90)
+rotation = -1.5708
+build_mode = 1
+polygon = PackedVector2Array(0, -12, 58, -12, 58, -3, 10, -3, 10, 132, 0, 132)
+
+[node name="Bottom Right" type="CollisionPolygon2D" parent="."]
+z_index = -1
+position = Vector2(160, 90)
+rotation = -3.14159
+build_mode = 1
+polygon = PackedVector2Array(140, -1.52588e-05, 140, 8.99998, 8, 9, 8, 56, -1, 56, -1, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

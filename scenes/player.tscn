@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3f4qd"]
 [ext_resource type="Texture2D" uid="uid://cy1y2vwnv346" path="res://assets/placeholder_dude.png" id="2_sgbka"]
-[ext_resource type="Texture2D" uid="uid://brk57ii6gycx8" path="res://assets/placeholder_beam.png" id="3_6durw"]
+[ext_resource type="Texture2D" uid="uid://brk57ii6gycx8" path="res://assets/beam.png" id="3_6durw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gfw7e"]
 animations = [{
@@ -58,8 +58,8 @@ texture = ExtResource("3_6durw")
 
 [node name="player lighting" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
-scale = Vector2(1.5, 1.5)
-energy = 0.11
+scale = Vector2(1.7, 1.7)
+energy = 0.2
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_svwv5")
 
@@ -70,3 +70,5 @@ current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_fx2aw")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
