@@ -12,7 +12,8 @@ var rooms_built = 0
 var layout = []
 
 var room_scene = preload("res://scenes/room.tscn")
-var door_scene = preload("res://scenes/door.tscn")
+var door_scene = load("res://scenes/door.tscn")
+
 
 func _ready():
 	# initialises array
@@ -28,25 +29,20 @@ func _ready():
 	# creates initial room
 	layout[width / 2][height / 2] = [1, 1, 1, 1, 1]
 	generate_rooms()
-	print('finished generating rooms. now building...')
 	build_rooms()
 
 func generate_rooms():
 	var i
 	var j
 	var created_room
-	#while not is_full():
-	while true:
+	while not created_room:
 		j = 0
 		created_room = false
 		for x in layout:
 			i = 0
-			if j >= width - 1:
-				continue
+			if j >= width - 1: continue
 			for y in layout:
-				if i >= height - 1:
-					continue
-
+				if i >= height - 1: continue
 				if(layout[i][j][0] == 1):
 					# if there is a door and if there is not already a room there
 					if(layout[i][j][2] == 1 && layout[i + 1][j][0] == 0):
@@ -67,10 +63,8 @@ func generate_rooms():
 
 				i += 1
 			j += 1
-		if not created_room: return
 	
 func create_room(x, y):
-	print('created room')
 	rooms += 1
 	layout[x][y][0] = 1
 	var i = 0
@@ -109,10 +103,6 @@ func build_rooms():
 				rooms_built += 1
 				room.position.x = i * 320 - width * 160
 				room.position.y = j * 180 - height * 90
-				print("built ")
-				print(rooms_built)
-				print("rooms out of ")
-				print(rooms)
 			if(layout[i][j][1]):
 				var door = door_scene.instantiate()
 				add_child(door)

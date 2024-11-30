@@ -8,6 +8,7 @@ var direction_facing: Vector2
 @onready var torch = get_node("torch")
 @onready var mega_torch = %MegaTorch
 @onready var area = $Area2D
+@onready var sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
 	$"../CanvasLayer/Battery Label".text = str(battery)
@@ -20,7 +21,20 @@ func _physics_process(delta):
 	velocity = direction * speed * delta * 60
 	if not direction.is_zero_approx():
 		direction_facing = direction
-	
+		match direction.normalized():
+			Vector2(1, 0):
+				sprite.animation = "runs"
+				sprite.flip_h = 0
+			Vector2(-1, 0):
+				sprite.animation = "runs"
+				sprite.flip_h = 1
+			Vector2(0, 1):
+				sprite.animation = "runf"
+			Vector2(0, -1):
+				sprite.animation = "runb"
+			_:
+				sprite.animation = "runs"
+	else: sprite.animation = "idle"
 	if(Input.is_action_just_pressed("use_battery") && batteries > 0):
 		batteries -= 1
 		if($Area2D.overlaps_area(mega_torch)):

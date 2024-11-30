@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx5e0asc5ee2g"]
+[gd_scene load_steps=6 format=3 uid="uid://dx5e0asc5ee2g"]
 
 [ext_resource type="Script" path="res://scripts/terrain.gd" id="1_iq5qs"]
 [ext_resource type="PackedScene" uid="uid://6dkdex7eahub" path="res://scenes/player.tscn" id="1_m4ejk"]
 [ext_resource type="PackedScene" uid="uid://crcix1me2rtyx" path="res://scenes/mega_torch.tscn" id="3_saleb"]
 [ext_resource type="PackedScene" uid="uid://cqqf33gmhrram" path="res://scenes/monster.tscn" id="5_t3w52"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_74v8k"]
-
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_npkk1"]
 
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_iq5qs")
+
+[node name="Darkness" type="CanvasModulate" parent="."]
+y_sort_enabled = true
+color = Color(0, 0, 0.298039, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_m4ejk")]
 unique_name_in_owner = true
@@ -22,15 +25,6 @@ position = Vector2(217, 57)
 [node name="MegaTorch" parent="." instance=ExtResource("3_saleb")]
 unique_name_in_owner = true
 position = Vector2(287, 41)
-
-[node name="Background" type="TextureRect" parent="."]
-unique_name_in_owner = true
-texture_filter = 1
-offset_left = 1.0
-offset_right = 320.0
-offset_bottom = 180.0
-texture = SubResource("CompressedTexture2D_74v8k")
-stretch_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -51,15 +45,6 @@ offset_top = 3.0
 offset_right = 121.0
 offset_bottom = 26.0
 text = "Audio"
-
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="Darkness" type="CanvasModulate" parent="CanvasLayer"]
-visible = false
-y_sort_enabled = true
-color = Color(0, 0, 0.0196078, 0.858824)
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamMicrophone_npkk1")

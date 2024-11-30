@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dg74mqhkfvuxt"]
+[gd_scene load_steps=5 format=3 uid="uid://dg74mqhkfvuxt"]
 
 [ext_resource type="Texture2D" uid="uid://c756eg05wlimb" path="res://assets/placeholder_mainroom.png" id="1_pky7n"]
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_rliyo"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_aw4cq"]
 cull_mode = 2
@@ -10,6 +11,8 @@ polygon = PackedVector2Array(-1, 0, 321, 1, 321, 180, 0, 180)
 size = Vector2(320, 180)
 
 [node name="Room" type="StaticBody2D"]
+visible = false
+script = ExtResource("1_rliyo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
