@@ -1,11 +1,140 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx5e0asc5ee2g"]
+[gd_scene load_steps=27 format=3 uid="uid://dx5e0asc5ee2g"]
 
 [ext_resource type="Script" path="res://scripts/terrain.gd" id="1_iq5qs"]
 [ext_resource type="PackedScene" uid="uid://6dkdex7eahub" path="res://scenes/player.tscn" id="1_m4ejk"]
-[ext_resource type="PackedScene" uid="uid://crcix1me2rtyx" path="res://scenes/mega_torch.tscn" id="3_saleb"]
+[ext_resource type="PackedScene" uid="uid://crcix1me2rtyx" path="res://scenes/laser.tscn" id="3_saleb"]
+[ext_resource type="AudioStream" uid="uid://deoke5aev588v" path="res://assets/music.mp3" id="5_gjo54"]
 [ext_resource type="PackedScene" uid="uid://cqqf33gmhrram" path="res://scenes/monster.tscn" id="5_t3w52"]
+[ext_resource type="Texture2D" uid="uid://dgsc4uxf5l5bi" path="res://assets/father.png" id="6_8x5di"]
+[ext_resource type="Texture2D" uid="uid://j2sjemma57wp" path="res://assets/father_dead.png" id="7_qsra1"]
 
-[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_npkk1"]
+[sub_resource type="LabelSettings" id="LabelSettings_xl5uk"]
+font_size = 21
+
+[sub_resource type="Theme" id="Theme_7ykwx"]
+default_font_size = 21
+
+[sub_resource type="Gradient" id="Gradient_dreta"]
+offsets = PackedFloat32Array(0, 0.493056, 0.975694)
+colors = PackedColorArray(1, 1, 1, 1, 0.423488, 0.423488, 0.423488, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v482p"]
+gradient = SubResource("Gradient_dreta")
+fill = 1
+fill_from = Vector2(0.5, 0.3)
+fill_to = Vector2(0.5, 0.9)
+metadata/_snap_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7eyk6"]
+atlas = ExtResource("6_8x5di")
+region = Rect2(0, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fscv1"]
+atlas = ExtResource("6_8x5di")
+region = Rect2(35, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1twf"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(0, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gga28"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(74, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfm8o"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(148, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m57v8"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(222, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suph6"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(296, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1i6x"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(370, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eot0s"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(444, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwwam"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(518, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wdet"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(592, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r64od"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(666, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ssu"]
+atlas = ExtResource("7_qsra1")
+region = Rect2(740, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m2rg"]
+atlas = ExtResource("6_8x5di")
+region = Rect2(70, 0, 35, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mgd7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7eyk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fscv1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1twf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gga28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfm8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m57v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suph6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1i6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eot0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwwam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wdet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r64od")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ssu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3m2rg")
+}],
+"loop": false,
+"name": &"die",
+"speed": 12.0
+}]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -13,40 +142,49 @@ script = ExtResource("1_iq5qs")
 
 [node name="Darkness" type="CanvasModulate" parent="."]
 y_sort_enabled = true
-color = Color(0, 0, 0.298039, 1)
+color = Color(0, 0, 0.0392157, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_m4ejk")]
 unique_name_in_owner = true
 motion_mode = 1
 
 [node name="Monster" parent="." instance=ExtResource("5_t3w52")]
-position = Vector2(217, 57)
+position = Vector2(-651, -50)
 
 [node name="MegaTorch" parent="." instance=ExtResource("3_saleb")]
 unique_name_in_owner = true
-position = Vector2(287, 41)
+position = Vector2(91, -2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Battery Label" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Full"
 
 [node name="Batteries Label" type="Label" parent="CanvasLayer"]
 offset_left = 35.0
 offset_right = 75.0
 offset_bottom = 23.0
 text = "Full"
+label_settings = SubResource("LabelSettings_xl5uk")
 
-[node name="Audio Label" type="Label" parent="CanvasLayer"]
-offset_left = 76.0
-offset_top = 3.0
-offset_right = 121.0
-offset_bottom = 26.0
-text = "Audio"
+[node name="Battery Bar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 70.0
+offset_bottom = 38.0
+theme = SubResource("Theme_7ykwx")
+max_value = 600.0
+step = 1.0
+value = 500.0
 
-[node name="Audio" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamMicrophone_npkk1")
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(5.42188, 3.05936)
+texture = SubResource("GradientTexture2D_v482p")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gjo54")
 autoplay = true
-bus = &"Record"
+
+[node name="Dad" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(52, 0)
+sprite_frames = SubResource("SpriteFrames_8mgd7")
+animation = &"die"
+autoplay = "default"

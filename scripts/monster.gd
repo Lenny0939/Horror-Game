@@ -1,44 +1,104 @@
-extends Area2D
+extends CharacterBody2D
 
-# Enemy pseudo code
-#can teleport when out of site, though not too much, possibly a limit 
-#cannot go through walls when close, when going through secure doors must wait 10s 
-#teleports when the player is too noisy, or when behind 
-#teleportation is more powerful depending on noise level, when behind it is subtle 
-#quite slow when close, relies on trapping player		
-#can seal up exits if there are multiple, and it isn't too unfair for the player 
+@onready var player = $"../Player"
+@onready var light = $Light
+@onready var sprite = $Sprite2D
+@onready var roar = $Roar
+@onready var lenny_roar = $"Lenny Roar"
+@onready var laugh = $Laugh
+@onready var rng = RandomNumberGenerator.new()
 
-#things to calculate 
-# when to teleport 
-# - when either far away or player is noisy 
-# when to block doorways 
-# - have to calculate fairness of this 
-# when to wander or pursue 
-# - depends on noise and distance, also will increase throughout the night ad week
-# when to jumpscare
-# - pretty easy, when player discovers it. probably a raycast from the torch. 
-# variable about aggression
-# - things it affects 
-# 	movement speed
-# 	wander or pursue 
-# 	teleportation 
-# - things that affect it 
-# 	what day you're on 
-# 	time of the night 
-# 	how noisy the player is and has been 
-# 	player distance 
-# 	whether the player can see it 
-#
-# separate multipliers for day and time of night 
-# multiplier for player noise 
-# divide by player distance * something 
-# if player can see it aggression automatically goes to max
+var direction
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+var enraged = false
+var discovered = false
+var target_position
+var speed = 40.0
+var player_position
+var player_distance
+var end = false
+var enemy_dead = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not end:
+		target_position = (player.position - position).normalized()
+		player_position = player.position
+		player_distance = position.distance_to(player_position)
+		if not discovered: speed = player_distance / 6
+		else: speed = 40
+		velocity = target_position * 50 * delta * 60
+	
+		if position.distance_to(player.position) < 100 and not discovered:
+			jumpscare()
+			discovered = true
+		
+		if position.distance_to(player.position) > 300:
+			unjumpscare()
+			discovered = false
+		
+		if not discovered and position.distance_to(player.position) > 1000:
+			pass
+			# teleport near the player
+		direction = round(target_position)
+	
+		match direction:
+			Vector2(0, 1):
+				sprite.animation = "runf"
+			Vector2(0, -1):
+				sprite.animation = "runb"
+			Vector2(1, 0):
+				sprite.animation = "runs"
+				sprite.flip_h = 0
+			Vector2(-1, 0):
+				sprite.animation = "runs"
+				sprite.flip_h = 1
+			_:
+				sprite.animation = "runs"
+	
+		move_and_slide()
+
+func _ready() -> void:
+	position.x = rng.randi_range(0, 3600)
+	position.y = rng.randi_range(0, 3600)
+	
+
+func discover():
+	if not discovered:
+		discovered = true
+		jumpscare()
+		
+func jumpscare():
 	pass
+	#TODO
+	light.enabled = true
+	roar.play()
+
+func unjumpscare():
+	light.enabled = false
+
+func monster_die():
+	sprite.animation = "die"
+	enemy_dead = true
+	end = true
+	var timer := Timer.new()
+	timer.autostart = true
+	timer.wait_time = 3.0
+	timer.timeout.connect(_on_timer_timeout)
+	add_child(timer)
+
+func player_die():
+	if not end:
+		sprite.animation = "kill"
+		lenny_roar.play()
+		end = true
+		$"../Player/AnimatedSprite2D".visible = false
+		var timer := Timer.new()
+		timer.autostart = true
+		timer.wait_time = 3.0
+		timer.timeout.connect(_on_timer_timeout)
+		add_child(timer)
+
+func _on_timer_timeout():
+	if enemy_dead: get_tree().change_scene_to_file("res://credits.tscn")
+	else: get_tree().change_scene_to_file("res://scenes/gameover.tscn")

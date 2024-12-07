@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://csa2jfw5t0m45"]
+[gd_scene load_steps=2 format=3 uid="uid://csa2jfw5t0m45"]
 
-[ext_resource type="Script" path="res://scripts/door.gd" id="1_l5dte"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_phqoa"]
-size = Vector2(30, 44)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk0bk"]
+size = Vector2(20, 40)
 
 [node name="Invisible" type="StaticBody2D"]
-script = ExtResource("1_l5dte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
-shape = SubResource("RectangleShape2D_phqoa")
+shape = SubResource("RectangleShape2D_xk0bk")

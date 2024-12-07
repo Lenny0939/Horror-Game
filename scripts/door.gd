@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_deleta: float) -> void:
 	if($Area2D.overlaps_body($"../Player") && Input.is_action_just_pressed("door")):
 		if open:
 			sprite.play("close")
@@ -19,3 +19,4 @@ func _process(delta: float) -> void:
 			$CollisionShape2D.disabled = not $CollisionShape2D.disabled
 			open = true
 			sprite.play("open")
+		$Creak.play()

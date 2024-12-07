@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgfqtk8kqsfxs"]
+
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_mprfs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygsos"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1yaim"]
+font_size = 12
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mprfs")
+
+[node name="End" type="Label" parent="."]
+layout_mode = 2
+offset_left = 96.0
+offset_top = 46.0
+offset_right = 231.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "THE END"
+label_settings = SubResource("LabelSettings_ygsos")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 87.0
+offset_top = 110.0
+offset_right = 193.0
+offset_bottom = 347.0
+text = "Game design
+Lenny Escott
+Programming
+Lenny Escott
+Art and animation
+Minato Kawai
+Music
+Lenny Escott
+Voice Acting
+Minato Kawai
+Morris Escott
+Lenny Escott"
+label_settings = SubResource("LabelSettings_1yaim")
+horizontal_alignment = 1
+vertical_alignment = 1

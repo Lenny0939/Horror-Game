@@ -11,8 +11,11 @@ config_version=5
 [application]
 
 config/name="Horror"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/intro.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.0295066, 0.0295066, 0.0295066, 1)
+boot_splash/image="res://assets/load.png"
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [audio]
@@ -29,6 +32,10 @@ window/stretch/mode="viewport"
 [global_group]
 
 light=""
+
+[gui]
+
+theme/custom_font="res://assets/VCR_OSD_MONO_1.001.ttf"
 
 [input]
 

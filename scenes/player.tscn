@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://6dkdex7eahub"]
+[gd_scene load_steps=33 format=3 uid="uid://6dkdex7eahub"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3f4qd"]
 [ext_resource type="Texture2D" uid="uid://cotuq2kn5evv2" path="res://assets/kid_idle.png" id="2_7rgwb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://brk57ii6gycx8" path="res://assets/beam.png" id="3_6durw"]
 [ext_resource type="Texture2D" uid="uid://byvh72hgqhh75" path="res://assets/kid_runf.png" id="4_xomvp"]
 [ext_resource type="Texture2D" uid="uid://qtxacauk84bd" path="res://assets/kid_runs.png" id="5_qvp8t"]
+[ext_resource type="AudioStream" uid="uid://bb4bmfojl0467" path="res://assets/footsteps.mp3" id="7_8v52l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkekl"]
 atlas = ExtResource("2_7rgwb")
@@ -182,6 +183,9 @@ gradient = SubResource("Gradient_v2wnt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftrm3"]
+radius = 22.3607
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3f4qd")
@@ -204,19 +208,32 @@ position_smoothing_speed = 20.0
 
 [node name="torch" type="PointLight2D" parent="."]
 position = Vector2(0, 3.5)
-enabled = false
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.592157)
 shadow_filter = 2
 shadow_filter_smooth = 21.5
 texture = ExtResource("3_6durw")
 
+[node name="Area2D" type="Area2D" parent="torch"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="torch/Area2D"]
+polygon = PackedVector2Array(-1, -0.5, 122, -31.5, 122, 30.5)
+
 [node name="player lighting" type="PointLight2D" parent="."]
-position = Vector2(-1, -1)
+position = Vector2(1.19209e-07, 1.19209e-07)
 scale = Vector2(1.7, 1.7)
-energy = 0.5
+energy = 0.1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_svwv5")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ftrm3")
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_8v52l")

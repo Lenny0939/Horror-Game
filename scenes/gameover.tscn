@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcitfbcmt5b5l"]
+
+[ext_resource type="Texture2D" uid="uid://balmuginys3x8" path="res://assets/wompwomp.png" id="1_y7r3c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkfsj"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(0, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5mqf"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(74, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r0w7"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(148, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoh68"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(222, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2ydv"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(296, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jkuj"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(370, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqnmu"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(444, 0, 74, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_676sw"]
+atlas = ExtResource("1_y7r3c")
+region = Rect2(518, 0, 74, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yj52y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkfsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5mqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r0w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoh68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2ydv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jkuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqnmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_676sw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a8sbc"]
+font_size = 32
+font_color = Color(0.69335, 0, 0.0641066, 1)
+
+[node name="Gameover" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(160, 130)
+sprite_frames = SubResource("SpriteFrames_yj52y")
+autoplay = "default"
+frame_progress = 0.384866
+
+[node name="Label" type="Label" parent="."]
+offset_left = 78.0
+offset_top = 28.0
+offset_right = 262.0
+offset_bottom = 73.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_a8sbc")

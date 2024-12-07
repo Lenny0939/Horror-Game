@@ -1,10 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://caqavylc7lsjh"]
+[gd_scene load_steps=12 format=3 uid="uid://caqavylc7lsjh"]
 
 [ext_resource type="Script" path="res://scripts/battery.gd" id="1_1b000"]
-[ext_resource type="Texture2D" uid="uid://mye0muocl0t5" path="res://assets/placeholder_battery.png" id="1_27gif"]
+[ext_resource type="Texture2D" uid="uid://o3qtcpskaeaf" path="res://assets/battery_small.png" id="2_2282j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37lpo"]
-radius = 4.0
+radius = 14.3178
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8601"]
+atlas = ExtResource("2_2282j")
+region = Rect2(0, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo5sm"]
+atlas = ExtResource("2_2282j")
+region = Rect2(35, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t52l"]
+atlas = ExtResource("2_2282j")
+region = Rect2(70, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1ens"]
+atlas = ExtResource("2_2282j")
+region = Rect2(105, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnij8"]
+atlas = ExtResource("2_2282j")
+region = Rect2(140, 0, 35, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22b0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8601")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo5sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t52l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1ens")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnij8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_4i0h6"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -24,12 +67,15 @@ script = ExtResource("1_1b000")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_37lpo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_27gif")
+position = Vector2(0, 4)
+sprite_frames = SubResource("SpriteFrames_22b0g")
+autoplay = "default"
+frame_progress = 0.170746
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.523438, 0.523438)
 texture = SubResource("GradientTexture2D_5thmc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

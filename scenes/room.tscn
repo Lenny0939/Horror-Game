@@ -1,57 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg74mqhkfvuxt"]
+[gd_scene load_steps=4 format=3 uid="uid://dg74mqhkfvuxt"]
 
-[ext_resource type="Texture2D" uid="uid://c756eg05wlimb" path="res://assets/placeholder_mainroom.png" id="1_pky7n"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_rliyo"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_aw4cq"]
-cull_mode = 2
-polygon = PackedVector2Array(-1, 0, 321, 1, 321, 180, 0, 180)
+[ext_resource type="Texture2D" uid="uid://dg4cx45gv1kkc" path="res://assets/room.png" id="2_sg1h6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62drv"]
 size = Vector2(320, 180)
 
 [node name="Room" type="StaticBody2D"]
-visible = false
 script = ExtResource("1_rliyo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
-texture = ExtResource("1_pky7n")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(-160, -90)
-occluder = SubResource("OccluderPolygon2D_aw4cq")
+position = Vector2(-1.43051e-06, -10)
+scale = Vector2(0.711111, 1)
+texture = ExtResource("2_sg1h6")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_62drv")
 
 [node name="Top left" type="CollisionPolygon2D" parent="."]
-position = Vector2(-160, -90)
+position = Vector2(-180, -90)
 build_mode = 1
-polygon = PackedVector2Array(-2, 0, 150, 0, 151, 9, 7, 9, 7, 83, -2, 83)
+polygon = PackedVector2Array(20, -10, 165, -10, 165, 50, 20, 50)
 
 [node name="Top Right" type="CollisionPolygon2D" parent="."]
-position = Vector2(150, -90)
-rotation = 1.5708
+position = Vector2(-10, -90)
 build_mode = 1
-polygon = PackedVector2Array(1, -11, 89, -11, 89, -3, 8, -3, 9, 125, -1.49061e-06, 125)
+polygon = PackedVector2Array(25, -10, 170, -10, 170, 50, 25, 50)
 
 [node name="Bottom Left" type="CollisionPolygon2D" parent="."]
 position = Vector2(-148, 90)
 rotation = -1.5708
 build_mode = 1
-polygon = PackedVector2Array(0, -12, 58, -12, 58, -3, 10, -3, 10, 132, 0, 132)
+polygon = PackedVector2Array(10, -1.99997, 80, -1.99971, 80, -11.9997, 10, -12, 9.99952, 133, 9.99952, 133)
 
 [node name="Bottom Right" type="CollisionPolygon2D" parent="."]
 z_index = -1
-position = Vector2(160, 90)
+position = Vector2(160, 80)
 rotation = -3.14159
 build_mode = 1
-polygon = PackedVector2Array(140, -1.52588e-05, 140, 8.99998, 8, 9, 8, 56, -1, 56, -1, 0)
+polygon = PackedVector2Array(145, -0.000366211, 145, -0.000366211, 10, -2.28882e-05, 10.0002, 80, 0.000198364, 80, 0, 0)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

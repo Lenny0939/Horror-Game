@@ -7,10 +7,10 @@ func _ready() -> void:
 	if(area.overlaps_body(player)): visible = true 
 	else: visible = false
 
-func _on_area_2d_body_entered(player) -> void:
+func _on_area_2d_body_entered(_player) -> void:
 	if(area.overlaps_body(player)): visible = true 
 	else: visible = false
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if(area.overlaps_body(player)): visible = true 
+func _on_area_2d_body_exited(_body: Node2D) -> void:
+	if area.overlaps_body(player): visible = true 
 	else: visible = false

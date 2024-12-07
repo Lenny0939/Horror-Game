@@ -5,15 +5,16 @@ const height = 70
 const width = 70
 const properties = 5
 const max_chance = 1000
-const base_ratio = 0.6
-const max_rooms = 80
+const base_ratio = 0.65
+const max_rooms = 150
 var rooms = 0
 var rooms_built = 0
 var layout = []
 
 var room_scene = preload("res://scenes/room.tscn")
 var door_scene = load("res://scenes/door.tscn")
-
+var invisible_door_scene = preload("res://scenes/invisible_door.tscn")
+var battery_scene = preload("res://scenes/battery.tscn")
 
 func _ready():
 	# initialises array
@@ -29,12 +30,14 @@ func _ready():
 	# creates initial room
 	layout[width / 2][height / 2] = [1, 1, 1, 1, 1]
 	generate_rooms()
+	show_rooms()
 	build_rooms()
+	play_animation()
 
 func generate_rooms():
 	var i
 	var j
-	var created_room
+	var created_room = false
 	while not created_room:
 		j = 0
 		created_room = false
@@ -103,26 +106,24 @@ func build_rooms():
 				rooms_built += 1
 				room.position.x = i * 320 - width * 160
 				room.position.y = j * 180 - height * 90
-			if(layout[i][j][1]):
-				var door = door_scene.instantiate()
-				add_child(door)
-				door.position.x = i * 320 - width * 160
-				door.position.y = j * 180 - 90 - height * 90
-			if(layout[i][j][2]):
-				var door = door_scene.instantiate()
-				add_child(door)
-				door.position.x = i * 320 + 160 - width * 160
-				door.position.y = j * 180 - height * 90
-			if(layout[i][j][3]):
-				var door = door_scene.instantiate()
-				add_child(door)
-				door.position.x = i * 320# - width * 160
-				door.position.y = j * 180 + 90# - height * 90
-			if(layout[i][j][4]):
-				var door = door_scene.instantiate()
-				add_child(door)
-				door.position.x = i * 320 - 160# - width * 160
-				door.position.y = j * 180# - height * 90
+				var north_door
+				if(layout[i][j][1]): north_door = door_scene.instantiate()
+				else: north_door = invisible_door_scene.instantiate()
+				add_child(north_door)
+				north_door.position.x = i * 320 - width * 160
+				north_door.position.y = j * 180 - 80 - height * 90
+				
+				var east_door
+				if(layout[i][j][2]): east_door = door_scene.instantiate()
+				else: east_door = invisible_door_scene.instantiate()
+				add_child(east_door)
+				east_door.position.x = i * 320 + 160 - width * 160
+				east_door.position.y = j * 180 - 20 - height * 90
+				if(rng.randi_range(0, 10) < max(i, j)):
+					var battery = battery_scene.instantiate()
+					add_child(battery)
+					battery.position.x = i * 320 - width * 160 + rng.randi_range(-90, 90)
+					battery.position.y = j * 180 - height * 90 + rng.randi_range(-40, 160)
 			j += 1
 		i += 1
 		
@@ -140,3 +141,13 @@ func is_full():
 			i += 1
 		j += 1
 	return true
+
+func play_animation():
+	var timer := Timer.new()
+	timer.autostart = true
+	timer.wait_time = 3.0
+	timer.timeout.connect(_on_timer_timeout)
+	add_child(timer)
+
+func _on_timer_timeout():
+	$Dad.animation = "die"
